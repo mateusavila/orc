@@ -1,0 +1,20 @@
+{
+  "name": "project-name",
+  "version": "0.0.0",
+  "title": "Project Name",
+  "homepage": "http://projectname.com",
+  "description": "Somenthing here",
+  "author": {
+    "name": "Author name",
+    "url": "http://authorsite.com",
+    "email": "email@domain.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/username/repository.git"
+  },
+  "devDependencies": {
+    "gulp": "~3.4.0",
+    "gulp-util": "~2.2.12"
+   }
+}
