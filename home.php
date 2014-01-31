@@ -15,21 +15,12 @@
 	<script src="assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-	<h2>Testando bagaça</h2>
-	<form action="" name="myForm" ng-controller="userCtrl" ng-submit="submit()">
-		<fieldset>
-			<label for="login">Login</label>
-			<input type="text" name="login" id="login" ng-model="data.login" required>
-			<label for="password">Senha</label>
-			<input type="password" name="password" id="password" ng-model="data.password" required>
-			<input type="submit" value="Logar" ng-disabled="myForm.$invalid" id="submit" >
-		</fieldset>
-	</form>
+	<h1>Logado</h1>
 	
 
 
 
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
-	<script src="assets/js/login.js"></script>
+	<script src="assets/js/main.js"></script>
 </body>
 </html>
