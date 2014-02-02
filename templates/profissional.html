@@ -13,9 +13,13 @@
 			<tr ng-repeat="tarefa in tarefas">
 				<td><input type="checkbox" name="item" value="{{tarefa.id}}" ng-model="tarefa.isChecked"></td>
 				<td>{{tarefa.nome}}</td>
-				<td><a href="#/tarefa/edit/{{tarefa.id}}">editar</a></td>
+				<td><button value="{{tarefa.id}}" ng-click="open()" ng-model="tarefa.url">editar</button></td>
 			</tr>
 		</tbody>
 	</table>
 	<input type="submit" value="Apagar">
 </form>
+<div id="editForm">
+	<h1>Editar Formulário</h1>
+	{{retorno_ajax}}
+</div>

@@ -3,7 +3,7 @@ var $app = angular.module('app', ['ngRoute']);
 
 $app.config(['$routeProvider', function($routeProvider){
 	$routeProvider.
-	when('/',{controller:listController, templateUrl:'templates/dashboard.html'}).
+	when('/',{controller:dashboard, templateUrl:'templates/dashboard.html'}).
 	when('/tarefa/edit/:id', {templateUrl: 'templates/tarefa_edit.html',controller: editController}).
 	when('/tarefa', {templateUrl: 'templates/tarefa.html',controller: listItens}).
 	when('/tarefa/new', {templateUrl: 'templates/tarefa_add.html',controller: newController}).
@@ -23,7 +23,7 @@ $app.run(function($rootScope){
 		window.location.href = "index.html";
 	}
 });
-function listController($scope) {
+function dashboard($scope) {
 	"use strict";
 	
 
@@ -55,7 +55,15 @@ function listItens($scope, $http, $location) {
 				$scope.itensDel.slice($scope.tarefas[i].id);
 			}
 		};
-		console.log($scope.itensDel);
+	}
+
+
+	$scope.open = function() {
+		"use strict";
+		console.log(this.tarefa.id);
+		$http({method:'GET', url:'get_by_id.php?id='+this.tarefa.id}).success(function(data){
+		$scope.retorno_ajax = data;
+	});
 	}
 	
 }
@@ -64,7 +72,7 @@ function editProfissional($scope, $location, $routeParams, $http) {
 	"use strict";
 	$scope.fdata = {};
 	$scope.data = [];
-	$http({method:'GET', url:'get_profissional_by_id.php?id='+$routeParams.id}).success(function(data){
+	$http({method:'GET', url:'get_by_id.php?id='+$routeParams.id}).success(function(data){
 		$scope.fdata.nome = data.nome;
 	});
 	// salvar a mudança do dado
