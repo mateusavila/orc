@@ -8,6 +8,7 @@ function userCtrl($scope, $http){
 			data: $scope.data
 		}).success(function(data){
 			if(data.status===0){
+				window.sessionStorage.setItem('login', data.login);
 				window.location.href = "home.php"
 			}
 		});
