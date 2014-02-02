@@ -1,18 +1,19 @@
-<h1>Lista de Profissionais Cadastrados</h1>
-<form action="" ng-submit="deleteAll()">
+<h1>Lista de Tarefas Cadastradas</h1>
+<form ng-submit="delete()">
+	<input type="hidden" ng-model="action" value="{{action}}">
 	<table>
 		<thead>
 			<tr>
-				<th><input type="checkbox" name="check_all" id="check_all" ng-change="getAll()" ng-model="data.itens"></th>
+				<th><input type="checkbox" name="check_all" id="check_all" ng-click="master = !master"></th>
 				<th>Nome</th>
 				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="n in nomes.nomes">
-				<td><input type="checkbox" name="item" value="{{n.id}}" ng-checked="data.itens" ng-click="unique()" ng-true-value="{{n.id}}"></td>
-				<td>{{n.nome}}</td>
-				<td><a href="#/profissional/edit/{{n.id}}">editar</a></td>
+			<tr ng-repeat="tarefa in tarefas">
+				<td><input type="checkbox" name="item" value="{{tarefa.id}}" ng-model="tarefa.isChecked"></td>
+				<td>{{tarefa.nome}}</td>
+				<td><a href="#/tarefa/edit/{{tarefa.id}}">editar</a></td>
 			</tr>
 		</tbody>
 	</table>

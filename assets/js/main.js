@@ -5,13 +5,13 @@ $app.config(['$routeProvider', function($routeProvider){
 	$routeProvider.
 	when('/',{controller:listController, templateUrl:'templates/dashboard.html'}).
 	when('/tarefa/edit/:id', {templateUrl: 'templates/tarefa_edit.html',controller: editController}).
-	when('/tarefa', {templateUrl: 'templates/tarefa.html',controller: editController}).
+	when('/tarefa', {templateUrl: 'templates/tarefa.html',controller: listItens}).
 	when('/tarefa/new', {templateUrl: 'templates/tarefa_add.html',controller: newController}).
 	when('/projeto/edit/:id', {templateUrl: 'templates/projeto_edit.html',controller: editController}).
 	when('/projeto', {templateUrl: 'templates/projeto.html',controller: editController}).
 	when('/projeto/new', {templateUrl: 'templates/projeto_add.html',controller: newController}).
 	when('/profissional/edit/:id', {templateUrl: 'templates/profissional_edit.html',controller: editProfissional}).
-	when('/profissional', {templateUrl: 'templates/profissional.html',controller: listProfissional}).
+	when('/profissional', {templateUrl: 'templates/profissional.html',controller: listItens}).
 	when('/profissional/new', {templateUrl: 'templates/profissional_add.html',controller: newController}).
 	otherwise({ redirectTo: '/' });
 }]);
@@ -28,44 +28,38 @@ function listController($scope) {
 	
 
 }
-function listProfissional($scope, $http) {
+function listItens($scope, $http, $location) {
 	"use strict";
-	$scope.nomes = [];
+	$scope.tarefas = [];
 	$scope.itens = [];
-	$scope.data = {};
-	$http({method:'GET', url:'get_profissional.php'}).success(function(data){
-		$scope.nomes = data;
+	$scope.chk = [];
+	$scope.action = $location.$$path.split('/')[1];
+	$http({method:'GET', url:'get.php?action='+$scope.action}).success(function(data){
+		$scope.tarefas = data.tarefas;
+		for (var i = 0; i < data.tarefas.length; i++) {
+			$scope.itens.push(data.tarefas[i].id);
+		};
 	});
-	$scope.deleteAll = function(){
-
-		$http({
-			method:'POST',
-			url:'delete.php',
-			data: $scope.data
-		}).success(function(data){
-			if(data.status===0){
-				console.log(data.message)
-				// aqui é pra fazer uma animação ou coisa bonita
-				// $location.path('/');
-			}
-		});
-	}
-	$scope.data.itens = false;
-	$scope.data.ids = [];
-	$scope.getAll = function(){
-		if($scope.data.itens){
-			for (var i = 0; i < $scope.nomes.nomes.length; i++) {
-				$scope.data.ids.push($scope.nomes.nomes[i].id);
-			};
-		}else{
-			$scope.data.ids = [];
+	$scope.$watch('master', function(value){
+		for (var i = 0; i < $scope.tarefas.length; i++) {
+			$scope.tarefas[i].isChecked = value;
 		}
-		console.log($scope.data.ids);
+	});
+	$scope.itensDel = [];
+	$scope.delete = function(){
+		$scope.itensDel = [];
+		for (var i = 0; i < $scope.tarefas.length; i++) {
+			if($scope.tarefas[i].isChecked){
+				$scope.itensDel.push($scope.tarefas[i].id);
+			}else{
+				$scope.itensDel.slice($scope.tarefas[i].id);
+			}
+		};
+		console.log($scope.itensDel);
 	}
-	$scope.unique = function(){
-		console.log($scope);
-	}
+	
 }
+
 function editProfissional($scope, $location, $routeParams, $http) {
 	"use strict";
 	$scope.fdata = {};

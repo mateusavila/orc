@@ -1,1 +1,21 @@
-<h1>Lista de Tarefas nesta Joça</h1>
+<h1>Lista de Tarefas Cadastradas</h1>
+<form ng-submit="delete()">
+<input type="hidden" ng-model="action" value="{{action}}">
+	<table>
+		<thead>
+			<tr>
+				<th><input type="checkbox" name="check_all" id="check_all" ng-click="master = !master"></th>
+				<th>Nome</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tarefa in tarefas">
+				<td><input type="checkbox" name="item" value="{{tarefa.id}}" ng-model="tarefa.isChecked"></td>
+				<td>{{tarefa.nome}}</td>
+				<td><a href="#/tarefa/edit/{{tarefa.id}}">editar</a></td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="submit" value="Apagar">
+</form>
