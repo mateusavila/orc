@@ -57,12 +57,13 @@ function listItens($scope, $http, $location) {
 		};
 	}
 
-
+	$scope.data = [];
 	$scope.open = function() {
 		"use strict";
 		console.log(this.tarefa.id);
 		$http({method:'GET', url:'get_by_id.php?id='+this.tarefa.id}).success(function(data){
-		$scope.retorno_ajax = data;
+			$scope.data.nome = data.nome;
+			$scope.data.email = data.email;
 	});
 	}
 	

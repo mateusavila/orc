@@ -21,5 +21,10 @@
 </form>
 <div id="editForm">
 	<h1>Editar Formulário</h1>
-	{{retorno_ajax}}
+	<form ng-submit="update()">
+		<label for="Nome">Nome:</label>
+		<input type="text" name="nome" ng-model="data.nome" value="{{data.nome}}">
+		<label for="email">Email</label>
+		<input type="email" name="email" ng-model="data.email" value="{{data.email}}">
+	</form>
 </div>

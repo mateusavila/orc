@@ -1,8 +1,6 @@
 <?php 
-$nomes['nome'] = array();
-$nomes['nome'][1] = "Mateus Avila Isidoro";
-$nomes['nome'][2] = "Carolina Fontoura Cartana";
-$nomes['nome'][5] = "José da Silva";
+$nomes['nome'] = "Mateus Avila Isidoro";
+$nomes['email'] = "mavisidoro@gmail.com";
 
-echo json_encode(array("nome" => $_GET['id']));
+echo json_encode(array("nome" => $nomes['nome'], "email"=>$nomes['email']));
 ?>
