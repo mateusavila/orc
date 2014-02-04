@@ -19,8 +19,28 @@
 			</tr>
 		</tbody>
 	</table>
-	<input type="submit" value="Apagar" ng-click="delete()">
+	<br>
+	<h2>Tabela com loadmore</h2>
+	<table>
+		<thead>
+			<tr>
+				<th><input type="checkbox" name="check_all" id="check_all" ng-click="master = !master"></th>
+				<th class="name">Nome &nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tarefa in tarefas | limitTo:totalDisplayed">
+				<td><input type="checkbox" name="item" value="{{tarefa.id}}" ng-model="tarefa.isChecked"></td>
+				<td>{{tarefa.nome}}</td>
+				<td><button value="{{tarefa.id}}" ng-click="open()" ng-model="tarefa.url">editar</button></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<input type="submit" value="Apagar" ng-click="delete()"><button ng-click="loadMore()">Carregar mais itens</button>
 </form>
+	
 	<div class="pagination pull-right">
 		<ul>
 			<li ng-class="{disabled: currentPage == 0}">

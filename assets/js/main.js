@@ -120,6 +120,11 @@ function listItens($scope, $http, $location, $filter) {
 		});
 	}
 
+	// scroll infinito
+	$scope.loadMore = function(){
+		$scope.totalDisplayed += 1;
+	}
+
 	// criando uma paginação
 	// total de páginas
 	$scope.sortingOrder = sortingOrder;
@@ -127,6 +132,7 @@ function listItens($scope, $http, $location, $filter) {
 	$scope.filteredItems = [];
 	$scope.groupedItems = [];
 	$scope.itemsPerPage = 1;
+	$scope.totalDisplayed = $scope.itemsPerPage;
 	$scope.pagedItems = [];
 	$scope.currentPage = 0;
 
