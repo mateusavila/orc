@@ -25,6 +25,7 @@
 
 	<script src="assets/js/vendor/angular.js"></script>
 	<script src="assets/js/vendor/angular.route.js"></script>
+	<script type="text/javascript" src="http://zeptojs.com/zepto.min.js"></script>
 	<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,30 +1,67 @@
 <h1>Lista de Tarefas Cadastradas</h1>
-<form ng-submit="delete()">
+<button ng-click="newItem()" ng-model="tarefa.url">Adicionar Registro</button>
+<input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
+<form>
 	<input type="hidden" ng-model="action" value="{{action}}">
 	<table>
 		<thead>
 			<tr>
 				<th><input type="checkbox" name="check_all" id="check_all" ng-click="master = !master"></th>
-				<th>Nome</th>
+				<th class="name">Nome &nbsp;<a ng-click="sort_by('name')"><i class="icon-sort"></i></a></th>
 				<th>Ações</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="tarefa in tarefas">
+			<tr ng-repeat="tarefa in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
 				<td><input type="checkbox" name="item" value="{{tarefa.id}}" ng-model="tarefa.isChecked"></td>
 				<td>{{tarefa.nome}}</td>
 				<td><button value="{{tarefa.id}}" ng-click="open()" ng-model="tarefa.url">editar</button></td>
 			</tr>
 		</tbody>
 	</table>
-	<input type="submit" value="Apagar">
+	<input type="submit" value="Apagar" ng-click="delete()">
 </form>
-<div id="editForm">
+	<div class="pagination pull-right">
+		<ul>
+			<li ng-class="{disabled: currentPage == 0}">
+				<a href ng-click="prevPage()">« Prev</a>
+			</li>
+			<li ng-repeat="n in range(pagedItems.length)" ng-class="{active: n == currentPage}" ng-click="setPage()">
+				<a href ng-bind="n + 1">1</a>
+			</li>
+			<li ng-class="{disabled: currentPage == pagedItems.length - 1}">
+				<a href ng-click="nextPage()">Next »</a>
+			</li>
+		</ul>
+	</div>
+
+
+
+
+
+
+
+
+<div id="editForm" class="hidden">
 	<h1>Editar Formulário</h1>
 	<form ng-submit="update()">
+		<input type="hidden" name="id" ng-model="data.id" value="{{data.id}}">
 		<label for="Nome">Nome:</label>
 		<input type="text" name="nome" ng-model="data.nome" value="{{data.nome}}">
 		<label for="email">Email</label>
 		<input type="email" name="email" ng-model="data.email" value="{{data.email}}">
+		<input type="submit" value="Salvar">
 	</form>
+	<div id="result">{{dados.message}}</div>
+</div>
+<div id="addForm" class="hidden">
+	<h1>Adicionar Dados</h1>
+	<form ng-submit="save()">
+		<label for="Nome">Nome:</label>
+		<input type="text" name="nome" ng-model="dadoss.nome">
+		<label for="email">Email</label>
+		<input type="email" name="email" ng-model="dadoss.email">
+		<input type="submit" value="Salvar">
+	</form>
+	<div id="result2">{{dados.message_save}}</div>
 </div>
