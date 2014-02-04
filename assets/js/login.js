@@ -10,6 +10,9 @@ function userCtrl($scope, $http){
 			if(data.status===0){
 				window.sessionStorage.setItem('login', data.login);
 				window.location.href = "home.php"
+			}else{
+				$scope.message = data.message;
+				console.log($scope.message);
 			}
 		});
 	}

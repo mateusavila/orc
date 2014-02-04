@@ -77,14 +77,12 @@ function listItens($scope, $http, $location, $filter) {
 	$scope.data = {};
 	$scope.open = function() {
 		"use strict";
+		$scope.editItem = false;
 		$http({method:'GET', url:'get_by_id.php?id='+this.tarefa.id+"&action="+$scope.action}).success(function(data){
 			$scope.data = data;
 			$('#editForm').removeClass('hidden');
 		});
 		console.log('trigger open');
-	}
-	$scope.newItem = function(){
-		$('#addForm').removeClass('hidden');
 	}
 	$scope.update = function(){
 		console.log('trigger update');
@@ -99,7 +97,6 @@ function listItens($scope, $http, $location, $filter) {
 				$scope.dados.message = data.message;
 				$scope.getList();
 				$scope.dados = {};
-				$('#editForm').addClass('hidden');
 			}
 		});
 		
@@ -115,10 +112,13 @@ function listItens($scope, $http, $location, $filter) {
 				// aqui é pra fazer uma animação ou coisa bonita
 				$scope.dados.message_save = data.message_save;
 				$scope.getList();
-				$('#addForm').addClass('hidden');
+				$scope.novoItem = true;
 			}
 		});
 	}
+
+	// novo Item
+	$scope.novoItem = true;
 
 	// scroll infinito
 	$scope.loadMore = function(){
@@ -222,10 +222,7 @@ function listItens($scope, $http, $location, $filter) {
 		else
 			$('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
 	};
-
-
-
-
+	
 	// iniciando a baçaga
 	$scope.init();
 

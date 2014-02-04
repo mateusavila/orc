@@ -1,5 +1,5 @@
 <h1>Lista de Tarefas Cadastradas</h1>
-<button ng-click="newItem()" ng-model="tarefa.url">Adicionar Registro</button>
+<button ng-click="novoItem = false" ng-model="novoItem">Adicionar Registro</button>
 <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
 <form>
 	<input type="hidden" ng-model="action" value="{{action}}">
@@ -15,7 +15,7 @@
 			<tr ng-repeat="tarefa in pagedItems[currentPage] | orderBy:sortingOrder:reverse">
 				<td><input type="checkbox" name="item" value="{{tarefa.id}}" ng-model="tarefa.isChecked"></td>
 				<td>{{tarefa.nome}}</td>
-				<td><button value="{{tarefa.id}}" ng-click="open()" ng-model="tarefa.url">editar</button></td>
+				<td><button value="{{tarefa.id}}" ng-click="open()" ng-model="editItem">editar</button></td>
 			</tr>
 		</tbody>
 	</table>
@@ -33,7 +33,7 @@
 			<tr ng-repeat="tarefa in tarefas | limitTo:totalDisplayed">
 				<td><input type="checkbox" name="item" value="{{tarefa.id}}" ng-model="tarefa.isChecked"></td>
 				<td>{{tarefa.nome}}</td>
-				<td><button value="{{tarefa.id}}" ng-click="open()" ng-model="tarefa.url">editar</button></td>
+				<td><button value="{{tarefa.id}}" ng-click="open()" ng-model="editItem">editar</button></td>
 			</tr>
 		</tbody>
 	</table>
@@ -62,7 +62,7 @@
 
 
 
-<div id="editForm" class="hidden">
+<div id="editForm" class="hidden" ng-class="{hidden: editItem}">
 	<h1>Editar Formulário</h1>
 	<form ng-submit="update()">
 		<input type="hidden" name="id" ng-model="data.id" value="{{data.id}}">
@@ -74,7 +74,7 @@
 	</form>
 	<div id="result">{{dados.message}}</div>
 </div>
-<div id="addForm" class="hidden">
+<div id="addForm" class="hidden" ng-class="{hidden: novoItem}">
 	<h1>Adicionar Dados</h1>
 	<form ng-submit="save()">
 		<label for="Nome">Nome:</label>
