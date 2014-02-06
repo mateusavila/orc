@@ -5,10 +5,11 @@ $app.config(['$routeProvider', function($routeProvider){
 	when('/tarefa', {templateUrl: 'templates/tarefa.html',controller: listItens}).
 	when('/projeto', {templateUrl: 'templates/projeto.html',controller: listItens}).
 	when('/profissional', {templateUrl: 'templates/profissional.html',controller: listItens}).
+	when('/logoff', {controller: logoffCtrl, templateUrl:'templates/dashboard.html'}).
 	otherwise({ redirectTo: '/' });
 }]);
 
-$app.run(function($rootScope){
+$app.run(function($rootScope, $http){
 	if(window.sessionStorage.getItem('login')){
 		return;
 	}else{
@@ -18,6 +19,18 @@ $app.run(function($rootScope){
 var sortingOrder = 'name';
 function dashboard($scope) {
 	"use strict";
+	
+
+}
+function logoffCtrl($scope, $location, $http) {
+	"use strict";
+	$http({
+			method:'POST',
+			url:'logoff.php'
+		}).success(function(data){
+			window.sessionStorage.removeItem('login');
+			window.location.href = "index.html";
+		});
 	
 
 }

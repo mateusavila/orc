@@ -16,6 +16,7 @@
 			<li><a href="#/projeto">Projetos</a></li>
 			<li><a href="#/tarefa">Tarefas</a></li>
 			<li><a href="#/profissional">Profissionais</a></li>
+			<li><a href="#/logoff">Logoff</a></li>
 		</ul>
 	</nav>
 	<div ng-view></div>

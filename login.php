@@ -12,6 +12,10 @@ if($usuario === 1){
 	if($senhaCorreta === 1){
 		$return['status'] = 0;
 		$return['message'] = "Login realizado com sucesso!";
+		session_start();
+		$_SESSION['login'] = $g['login'];
+		$_SESSION['senha'] = $g['password'];
+		
 	}else{
 		$return['status'] = 2;
 		$return['message'] = "Usuário Encontrado, mas senha inválida. Favor tentar novamente.";
