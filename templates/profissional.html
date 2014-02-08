@@ -5,7 +5,7 @@
 <div data-ng-repeat="field in fields">
 	<input type="text" name="item[]" ng-model="field.name" placeholder="Adicione campo">
 </div>
-
+<button ng-click="printResult()">Pegar valores</button>
 <hr>
 <button ng-click="novoItem = false" ng-model="novoItem">Adicionar Registro</button>
 <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">

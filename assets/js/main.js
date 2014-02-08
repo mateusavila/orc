@@ -256,6 +256,9 @@ function listItens($scope, $http, $location, $filter) {
 		var newItemNo = $scope.fields.length+1;
 		$scope.fields.push({'id':'field'+newItemNo});
 	}
+	$scope.printResult = function(){
+		console.log($scope.fields);
+	}
 
 	// iniciando a baçaga
 	$scope.init();
