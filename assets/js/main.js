@@ -16,6 +16,11 @@ $app.run(function($rootScope, $http){
 		window.location.href = "index.html";
 	}
 });
+
+// primeira diretiva
+
+
+
 var sortingOrder = 'name';
 function dashboard($scope) {
 	"use strict";
@@ -25,12 +30,12 @@ function dashboard($scope) {
 function logoffCtrl($scope, $location, $http) {
 	"use strict";
 	$http({
-			method:'POST',
-			url:'logoff.php'
-		}).success(function(data){
-			window.sessionStorage.removeItem('login');
-			window.location.href = "index.html";
-		});
+		method:'POST',
+		url:'logoff.php'
+	}).success(function(data){
+		window.sessionStorage.removeItem('login');
+		window.location.href = "index.html";
+	});
 	
 
 }
@@ -53,7 +58,6 @@ function listItens($scope, $http, $location, $filter) {
 
 			};
 			$scope.search();
-			console.log($scope.totalPages);
 		});
 		console.log('trigger get List');
 	}
@@ -136,6 +140,12 @@ function listItens($scope, $http, $location, $filter) {
 	// scroll infinito
 	$scope.loadMore = function(){
 		$scope.totalDisplayed += 1;
+	}
+
+	// addCnotent
+	$scope.addItem = function(parametros) {
+		"use strict";
+		//conteúdo da função
 	}
 
 	// criando uma paginação
@@ -235,8 +245,18 @@ function listItens($scope, $http, $location, $filter) {
 		else
 			$('th.'+new_sorting_order+' i').removeClass().addClass('icon-chevron-down');
 	};
+
 	
+	
+
+
+	// adicionar campo
+	$scope.fields = [{id:'field1'}];
+	$scope.addField = function(){
+		var newItemNo = $scope.fields.length+1;
+		$scope.fields.push({'id':'field'+newItemNo});
+	}
+
 	// iniciando a baçaga
 	$scope.init();
-
 }

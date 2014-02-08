@@ -1,6 +1,18 @@
 <h1>Lista de Tarefas Cadastradas</h1>
+<hr>
+<h3>Adicionar Campos</h3>
+<button ng-click="addField()">Adicionar Campo</button>
+<div data-ng-repeat="field in fields">
+	<input type="text" name="item[]" ng-model="field.name" placeholder="Adicione campo">
+</div>
+
+<hr>
 <button ng-click="novoItem = false" ng-model="novoItem">Adicionar Registro</button>
 <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">
+
+
+
+<hr>
 <form>
 	<input type="hidden" ng-model="action" value="{{action}}">
 	<table>
