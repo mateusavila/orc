@@ -4,9 +4,10 @@
 <button ng-click="addField()">Adicionar Campo</button>
 <div data-ng-repeat="field in fields">
 	<input type="text" name="item[]" ng-model="field.name" placeholder="Adicione campo">
-	<input type="text" name="item[]" ng-model="field.hour" placeholder="Adicione Horario">
+	<input type="number" name="item[]" ng-model="field.hour" placeholder="Adicione Horario">
 </div>
 <button ng-click="printResult()">Pegar valores</button>
+<button ng-click="sumValues()">Somar valores</button>
 <hr>
 <button ng-click="novoItem = false" ng-model="novoItem">Adicionar Registro</button>
 <input type="text" ng-model="query" ng-change="search()" class="input-large search-query" placeholder="Search">

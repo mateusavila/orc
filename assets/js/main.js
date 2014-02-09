@@ -259,6 +259,14 @@ function listItens($scope, $http, $location, $filter) {
 	$scope.printResult = function(){
 		console.log($scope.fields);
 	}
+	$scope.total = 0;
+	$scope.sumValues = function(){
+		$scope.total = 0;
+		for (var i = 0; i < $scope.fields.length; i++) {
+			$scope.total += $scope.fields[i].hour;
+		};
+		console.log($scope.total);
+	}
 
 
 	// change content
