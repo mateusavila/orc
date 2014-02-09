@@ -4,6 +4,7 @@
 <button ng-click="addField()">Adicionar Campo</button>
 <div data-ng-repeat="field in fields">
 	<input type="text" name="item[]" ng-model="field.name" placeholder="Adicione campo">
+	<input type="text" name="item[]" ng-model="field.hour" placeholder="Adicione Horario">
 </div>
 <button ng-click="printResult()">Pegar valores</button>
 <hr>
@@ -97,3 +98,13 @@
 	</form>
 	<div id="result2">{{dados.message_save}}</div>
 </div>
+
+<hr>
+<h2>Selects auto-preenchidos</h2>
+<select name="select" id="select" ng-model="select" ng-change="change()">
+	<option value="1">Value 1</option>
+	<option value="2">Value 2</option>
+</select>
+<select name="select2" id="select2" >
+	<option value="{{opt.value}}" ng-repeat="opt in changeContent">{{opt.text}}</option>
+</select>

@@ -260,6 +260,14 @@ function listItens($scope, $http, $location, $filter) {
 		console.log($scope.fields);
 	}
 
+
+	// change content
+	$scope.changeContent = [];
+	$scope.change = function(){
+		$http({method:'GET', url:'get_select.php?id='+$scope.select+"&action="+$scope.action}).success(function(data){
+			$scope.changeContent = data.opt;
+		});
+	}
 	// iniciando a baçaga
 	$scope.init();
 }
